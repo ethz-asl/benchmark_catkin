@@ -1,2 +1,4 @@
-# benchmark_catkin
-A catkin wrapper for the Google benchmark library
+benchmark_catkin
+=============
+
+A catkin wrapper for Google benchmark
