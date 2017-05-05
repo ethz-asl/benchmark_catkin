@@ -3,7 +3,6 @@
 
 #include <benchmark/benchmark.h>
 #include <benchmark/benchmark_api.h>
-#include <gflags/gflags.h>
 #include <glog/logging.h>
 
 class BenchmarkEntryPointBase {
@@ -14,7 +13,6 @@ class BenchmarkEntryPointBase {
   inline int run(int argc, char** argv) {
     google::InitGoogleLogging(argv[0]);
     google::InstallFailureSignalHandler();
-    google::ParseCommandLineFlags(&argc, &argv, true);
     FLAGS_alsologtostderr = true;
     FLAGS_colorlogtostderr = true;
     ::benchmark::Initialize(&argc, argv);
