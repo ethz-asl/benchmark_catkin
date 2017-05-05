@@ -1,5 +1,5 @@
-#ifndef BENCHMARK_HELPERS_H_
-#define BENCHMARK_HELPERS_H_
+#ifndef BENCHMARK_ENTRYPOINT_H_
+#define BENCHMARK_ENTRYPOINT_H_
 
 #include <benchmark/benchmark.h>
 #include <benchmark/benchmark_api.h>
@@ -29,4 +29,4 @@ class BenchmarkEntryPointBase {
     return entry_point.run(argc, argv);          \
   }
 
-#endif /* BENCHMARK_HELPERS_H_ */
+#endif /* BENCHMARK_ENTRYPOINT_H_ */

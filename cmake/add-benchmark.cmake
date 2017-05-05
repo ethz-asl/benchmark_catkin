@@ -10,7 +10,7 @@ function(add_benchmark target)
   endif()
   include_directories(${${PROJECT_NAME}_LOCAL_INCLUDE_DIR} ${catkin_INCLUDE_DIRS})
   
-  # Build the test (but not in target all).
+  # Build the benchmark (but not in target all).
   add_executable(${target} ${ARGN})
   set_target_properties(${target} PROPERTIES EXCLUDE_FROM_ALL TRUE)
   target_link_libraries(${target} ${catkin_LIBRARIES} ${THREADS_LIBRARY})
