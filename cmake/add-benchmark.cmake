@@ -26,9 +26,9 @@ function(add_benchmark target)
     get_target_property(_target_path ${target} RUNTIME_OUTPUT_DIRECTORY)
     
     set(OUTPUT_FOLDER "${CATKIN_TEST_RESULTS_DIR}/${PROJECT_NAME}")
-    set(OUTPUT_FILE "${OUTPUT_FOLDER}/benchmark-${target}.csv")
+    set(OUTPUT_FILE "${OUTPUT_FOLDER}/benchmark-${target}.json")
     set(CMD_CREATE_FOLDER bash -c "mkdir -p ${OUTPUT_FOLDER}")
-    set(CMD_RUN_BENCHMARK bash -c "${_target_path}/${target} --benchmark_out_format=csv --benchmark_out=${OUTPUT_FILE}")
+    set(CMD_RUN_BENCHMARK bash -c "${_target_path}/${target} --benchmark_out_format=json --benchmark_out=${OUTPUT_FILE}")
     
     add_custom_command(
     	OUTPUT ${OUTPUT_FILE}
