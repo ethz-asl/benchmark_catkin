@@ -1,6 +1,6 @@
 function(add_benchmark target)
   if(NOT DEFINED CMAKE_RUNTIME_OUTPUT_DIRECTORY)
-    message(FATAL_ERROR "add_executable_with_benchmark() must be called after catkin_package() so that default output directories for the executables are defined")
+    message(FATAL_ERROR "add_benchmark() must be called after catkin_package() so that default output directories for the executables are defined")
   endif()
 
   # Add include directory if available.
@@ -11,7 +11,7 @@ function(add_benchmark target)
   include_directories(${${PROJECT_NAME}_LOCAL_INCLUDE_DIR} ${catkin_INCLUDE_DIRS})
   
   # Build the test (but not in target all).
-  cs_add_executable(${target} ${ARGN})
+  add_executable(${target} ${ARGN})
   set_target_properties(${target} PROPERTIES EXCLUDE_FROM_ALL TRUE)
   target_link_libraries(${target} ${catkin_LIBRARIES} ${THREADS_LIBRARY})
   
@@ -37,9 +37,9 @@ function(add_benchmark target)
     add_custom_target(run_benchmarks_${target} DEPENDS ${OUTPUT_FILE})
     
     # Add to benchmark meta-target.
-  	if(NOT TARGET run_benchmarks)
-		add_custom_target(run_benchmarks)
-  	endif()
-  	add_dependencies(run_benchmarks run_benchmarks_${target})
+    if(NOT TARGET run_benchmarks)
+       add_custom_target(run_benchmarks)
+    endif()
+    add_dependencies(run_benchmarks run_benchmarks_${target})
   endif()
 endfunction()
