@@ -19,7 +19,7 @@ ExternalProject_Add(
        -DBENCHMARK_NAMESPACE:STRING=google
        -DCMAKE_BUILD_TYPE:STRING=Release
   BUILD_COMMAND cd ../benchmark_src && make -j 8
-  INSTALL_COMMAND cd ../benchmark_src && make install -j 8
+  INSTALL_COMMAND cd ../benchmark_src && $(MAKE) install -j 8
 )
 
 cs_add_library(${PROJECT_NAME} src/dependency_tracker.cc)
@@ -28,6 +28,7 @@ target_link_libraries(${PROJECT_NAME}
 ${CATKIN_DEVEL_PREFIX}/lib/libbenchmark${CMAKE_SHARED_LIBRARY_SUFFIX})
 
 cs_install()
-
-cs_export(INCLUDE_DIRS ${CATKIN_DEVEL_PREFIX}/include
-CFG_EXTRAS benchmark-extras.cmake)
+cs_export(
+    INCLUDE_DIRS ${CATKIN_DEVEL_PREFIX}/include
+    CFG_EXTRAS benchmark-extras.cmake
+)

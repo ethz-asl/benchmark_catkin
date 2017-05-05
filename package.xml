@@ -4,6 +4,7 @@
   <version>0.0.0</version>
   <description>benchmark_catkin</description>
   <maintainer email="marius.b.fehr@gmail.com">Marius Fehr</maintainer>
+  <maintainer email="schneith@ethz.ch">Thomas Schneider</maintainer>
 
   <license>See package</license>
   <buildtool_depend>catkin</buildtool_depend>
