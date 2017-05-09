@@ -9,7 +9,9 @@ file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include)
 
 ExternalProject_Add(
   benchmark_src
-  URL https://github.com/google/benchmark/archive/v1.1.0.zip
+  #URL https://github.com/google/benchmark/archive/v1.1.0.zip
+  GIT_REPOSITORY https://github.com/google/benchmark.git
+  GIT_TAG cb8a0cc10f8b634fd554251ae086da522b58f50e
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND cd ../benchmark_src &&
      cmake .
