@@ -10,7 +10,7 @@ file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include)
 ExternalProject_Add(
   benchmark_src
   GIT_REPOSITORY https://github.com/google/benchmark.git
-  GIT_TAG cb8a0cc10f8b634fd554251ae086da522b58f50e
+  GIT_TAG 336bb8db986cc52cdf0cefa0a7378b9567d1afee # 1.3.0
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND cd ../benchmark_src &&
      cmake .
@@ -21,13 +21,12 @@ ExternalProject_Add(
   INSTALL_COMMAND cd ../benchmark_src && $(MAKE) install -j 8
 )
 
-cs_add_library(${PROJECT_NAME} src/dependency_tracker.cc)
-add_dependencies(${PROJECT_NAME} benchmark_src)
-target_link_libraries(${PROJECT_NAME}
-${CATKIN_DEVEL_PREFIX}/lib/libbenchmark${CMAKE_SHARED_LIBRARY_SUFFIX})
-
-cs_install()
-cs_export(
-    INCLUDE_DIRS ${CATKIN_DEVEL_PREFIX}/include
-    CFG_EXTRAS benchmark-extras.cmake
-)
+install(DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/benchmark
+        DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}
+        FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY ${CATKIN_DEVEL_PREFIX}/lib/
+        DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        FILES_MATCHING PATTERN "libbenchmark*")
+cs_export(INCLUDE_DIRS ${CATKIN_DEVEL_PREFIX}/include
+          LIBRARIES benchmark
+          CFG_EXTRAS add-benchmark.cmake)
